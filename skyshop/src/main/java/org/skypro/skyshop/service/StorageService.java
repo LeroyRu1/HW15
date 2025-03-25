@@ -18,14 +18,26 @@ public class StorageService {
     public StorageService () {
         initializeData ();
     }
-    private void initializeData () {
-        products.put(UUID.randomUUID(), new Electronic(UUID.randomUUID(), "Ноутбук", 200_000, "MSI"));
-        products.put(UUID.randomUUID(), new Electronic(UUID.randomUUID(), "Телефон", 50_000, "Samsung"));
-        products.put(UUID.randomUUID(), new Food(UUID.randomUUID(), "Яблоко", 50, "20.12.2025"));
-        products.put(UUID.randomUUID(), new Food(UUID.randomUUID(), "Груша", 30, "21.12.2025"));
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(products.get(id));
+    }
 
-        articles.put(UUID.randomUUID(),new Article(UUID.randomUUID(), "Яблочное варенье", "Как сделать варенье из яблок"));
-        articles.put(UUID.randomUUID(),new Article(UUID.randomUUID(), "Грушевое варенье", "Как сделать варенье из груш"));
+    private void initializeData () {
+
+        var id1 = UUID.fromString("4fbd6db7-9706-4998-a7b2-e9298f1dcdf7");
+        var id2 = UUID.fromString("16303b8b-f138-4d14-919c-11d9d318dce2");
+        var id3 = UUID.fromString("1baf4791-bd33-4be7-93ae-4b9678dd53f6");
+        var id4 = UUID.fromString("936bf3e4-75c9-424a-aeb5-eeed966838b3");
+        var id5 = UUID.fromString("936bf3e4-75c9-425a-aeb5-eeed966838b3");
+        var id6 = UUID.fromString("936bf3e4-75c9-426a-aeb5-eeed966838b3");
+
+        products.put(id1, new Electronic( id1,"Ноутбук", 200_000, "MSI"));
+        products.put(id2, new Electronic(id2, "Телефон", 50_000, "Samsung"));
+        products.put(id3, new Food(id3, "Яблоко", 50, "20.12.2025"));
+        products.put(id4, new Food(id4, "Груша", 30, "21.12.2025"));
+
+        articles.put(id5,new Article(id5, "Яблочное варенье", "Как сделать варенье из яблок"));
+        articles.put(id6,new Article(id6, "Грушевое варенье", "Как сделать варенье из груш"));
 
     }
     public Collection<Product> getAllProducts () {
