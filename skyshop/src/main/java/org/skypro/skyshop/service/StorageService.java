@@ -1,6 +1,7 @@
 package org.skypro.skyshop.service;
 
 import org.apache.tomcat.util.http.parser.Cookie;
+import org.skypro.skyshop.exception.NoSuchProductException;
 import org.skypro.skyshop.model.Article;
 import org.skypro.skyshop.model.product.Electronic;
 import org.skypro.skyshop.model.product.Food;
@@ -18,8 +19,9 @@ public class StorageService {
     public StorageService () {
         initializeData ();
     }
-    public Optional<Product> getProductById(UUID id) {
-        return Optional.ofNullable(products.get(id));
+    public Product getProductById(UUID id) {
+        return Optional.ofNullable(products.get(id))
+                .orElseThrow(() -> new NoSuchProductException("Продукт с ID " + id + " не найден!"));
     }
 
     private void initializeData () {
