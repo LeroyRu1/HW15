@@ -13,12 +13,17 @@ import java.util.*;
 
 @Service
 public class StorageService {
-    private final Map <UUID, Product> products = new HashMap<>();
-    private final Map<UUID, Article> articles = new HashMap<>();
+    private  Map <UUID, Product> products = new HashMap<>();
+    private  Map<UUID, Article> articles = new HashMap<>();
 
-    public StorageService () {
-        initializeData ();
+    public StorageService(Map<UUID, Product> products) {
+        this.products = products;
     }
+    public StorageService() {
+        this.products = new HashMap<>();
+        initializeData();
+    }
+
     public Product getProductById(UUID id) {
         return Optional.ofNullable(products.get(id))
                 .orElseThrow(() -> new NoSuchProductException("Продукт с ID " + id + " не найден!"));
